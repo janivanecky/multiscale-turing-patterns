@@ -202,14 +202,10 @@ int main(int argc, char **argv) {
     Config config = {
         world_width,
         world_height,
-        0.1f,
-        0.2f,
+        1.0f,
+        1.0f,
         0.98f,
-        #ifdef FAST_DIFFUSE
-        5,
-        #else
         1,
-        #endif
         true,
         true,
     };
@@ -316,7 +312,7 @@ int main(int argc, char **argv) {
             }
             if (input::key_pressed(KeyCode::F2)) {
                 int max_diffuse_values[8] = {
-                    250, 250, 150, 100, 50, 25, 10, 5
+                    150, 125, 100, 100, 50, 25, 10, 5
                 };
                 float max_inhibitor_to_activator_ratios[8] = {
                     3.0f, 3.0f, 3.0f, 4.0f, 4.0f, 4.0f, 4.0f
