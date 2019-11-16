@@ -43,12 +43,12 @@ void main(uint3 threadIDInGroup : SV_GroupThreadID, uint3 groupID : SV_GroupID, 
         int2 in_idx = dispatchThreadId.xy * 2;
         float4 result = float4(0,0,0,0);
         int2 start_pos = 0;
-        int pyramid_size = world_width;
+        int2 pyramid_size = int2(world_width, world_height);
         for (int i = 0; i < pyramid_level; ++i) {
-            start_pos.x += pyramid_size;
+            start_pos.x += pyramid_size.x;
             pyramid_size /= 2;
         }
-        int2 min_bounds = int2(start_pos.x - pyramid_size * 2, 0);
+        int2 min_bounds = int2(start_pos.x - pyramid_size.x * 2, 0);
         int2 max_bounds = min_bounds + pyramid_size * 2;
         out_idx += start_pos;
 

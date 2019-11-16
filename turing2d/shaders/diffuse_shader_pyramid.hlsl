@@ -44,20 +44,20 @@ void main(uint3 threadIDInGroup : SV_GroupThreadID, uint3 groupID : SV_GroupID, 
         
         int level1 = floor(level);
         int level2 = ceil(level);
-        int size1 = world_width;
+        int2 size1 = int2(world_width, world_height);
         int2 start1 = 0;
         for(int i = 0; i < level1; ++i) {
-            start1.x += size1;
+            start1.x += size1.x;
             size1 /= 2;
         }
-        int size2 = size1 / 2;
-        int2 start2 = start1 + int2(size1, 0);
+        int2 size2 = size1 / 2;
+        int2 start2 = start1 + int2(size1.x, 0);
         
-        float ideal_size = world_width / pow(2, level);
+        float2 ideal_size = float2(world_width, world_height) / pow(2, level);
         float2 pos = idx / pow(2, level);
 
-        float2 pos1 = pos / ideal_size * float(size1);
-        float2 pos2 = pos / ideal_size * float(size2);
+        float2 pos1 = pos / ideal_size * float2(size1);
+        float2 pos2 = pos / ideal_size * float2(size2);
 
         int2 min_boundary1 = start1;
         int2 max_boundary1 = start1 + size1;
