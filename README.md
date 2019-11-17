@@ -10,6 +10,8 @@ Based on:
 
 ![zoom.gif](imgs/zoom.gif)
 
+Longer HD video - https://vimeo.com/373669214
+
 ## Fast diffusion
 
 The diffusion step requires averaging concentrations over relatively large areas (few hundreds of pixels) which gets really slow on GPUs for larger resolutions, even when separating blur filters x and y directions. One way to optimize this is to use FFT, the other (thanks Oskar!) is to approximate blur/diffusion of different sizes by using mipmaps (details in [this paper](https://cgg.mff.cuni.cz/~oskar/projects/CGA2013/Elek2013.pdf)). This gets us from ~0.66 secs for 2048x2048 resolution and 3-fold symmetry to ~0.025s, for some loss in quality. 
