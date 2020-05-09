@@ -9,7 +9,6 @@
 #include "random.h"
 #include <cassert>
 #include <mmsystem.h>
-#include "logging.h"
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
