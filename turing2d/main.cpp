@@ -6,7 +6,6 @@
 #include "ui.h"
 #include "font.h"
 #include "input.h"
-#include "random.h"
 #include <cassert>
 #include <mmsystem.h>
 #define STB_IMAGE_WRITE_IMPLEMENTATION
@@ -93,15 +92,16 @@ Vector3 hsv_to_rgb(float h, float s, float v) {
     return out;     
 }
 
-#define FAST_DIFFUSE
+//#define FAST_DIFFUSE
 int main(int argc, char **argv) {
     // Set up window
     const int NO_TEXTURES = 2;
     const int NO_SCALES = 8;
+    //uint32_t window_width = 512, window_height = 512;
     uint32_t window_width = 1024, window_height = 1024;
     //uint32_t window_width = 2048, window_height = 2048;
  	Window window = platform::get_window("Turing Patterns", window_width, window_height);
-    uint32_t world_width = window_width * 2, world_height = window_height * 2;
+    uint32_t world_width = window_width / 2, world_height = window_height / 2;
     assert(platform::is_window_valid(&window));
 
     // Init graphics
@@ -148,7 +148,7 @@ int main(int argc, char **argv) {
     // Textures
     float *grid_values = memory::alloc_heap<float>(world_width * world_height);
     for (int i = 0; i < world_width * world_height; ++i) {
-        grid_values[i] = random::uniform();
+        grid_values[i] = math::random_uniform();
     }
     float *color_values = memory::alloc_heap<float>(world_width * world_height * 4);
     for (int i = 0; i < world_width * world_height * 4; ++i) {
@@ -316,13 +316,13 @@ int main(int argc, char **argv) {
                 float max_inhibitor_to_activator_ratios[8] = {
                     3.0f, 3.0f, 3.0f, 4.0f, 4.0f, 4.0f, 4.0f
                 };
-                int random_symmetry = (int)random::uniform(1, 9);
+                int random_symmetry = (int)math::random_uniform(1, 9);
                 for(int i = 0; i < NO_SCALES; ++i) {
-                    activator_diffuse_sizes[i] = random::uniform(1, max_diffuse_values[i]);
-                    inhibitor_diffuse_sizes[i] = activator_diffuse_sizes[i] * random::uniform(1.5f, max_inhibitor_to_activator_ratios[i]);
+                    activator_diffuse_sizes[i] = math::random_uniform(1, max_diffuse_values[i]);
+                    inhibitor_diffuse_sizes[i] = activator_diffuse_sizes[i] * math::random_uniform(1.5f, max_inhibitor_to_activator_ratios[i]);
 
                     symmetries[i] = random_symmetry;
-                    update_vals[i] = i < 4 ? random::uniform(-0.03f, 0.1f) : random::uniform(-0.01f, 0.05);
+                    update_vals[i] = i < 4 ? math::random_uniform(-0.03f, 0.1f) : math::random_uniform(-0.01f, 0.05);
                 }
 
                 graphics::release(&grid);
@@ -332,7 +332,7 @@ int main(int argc, char **argv) {
             }
             if (input::key_pressed(KeyCode::F3)) {
                 for(int i = 0; i < NO_SCALES; ++i) {
-                    Vector3 color = hsv_to_rgb(random::uniform(0, 360), 1.0f, 1.0f);
+                    Vector3 color = hsv_to_rgb(math::random_uniform(0, 360), 1.0f, 1.0f);
                     if (i >= 4) {
                         color = color * 0.5f;
                     }
