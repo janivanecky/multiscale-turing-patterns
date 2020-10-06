@@ -100,13 +100,13 @@ int main(int argc, char **argv) {
     //uint32_t window_width = 512, window_height = 512;
     uint32_t window_width = 1024, window_height = 1024;
     //uint32_t window_width = 2048, window_height = 2048;
- 	Window window = platform::get_window("Turing Patterns", window_width, window_height);
+    HWND window = platform::get_window("Turing Patterns", window_width, window_height);
     uint32_t world_width = window_width / 2, world_height = window_height / 2;
-    assert(platform::is_window_valid(&window));
+    assert(platform::is_window_valid(window));
 
     // Init graphics
     graphics::init();
-    graphics::init_swap_chain(&window);
+    graphics::init_swap_chain(window, window_width, window_height);
 
     font::init();
     ui::init((float)window_width, (float)window_height);
