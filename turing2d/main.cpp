@@ -542,7 +542,7 @@ int main(int argc, char **argv) {
         graphics::unset_texture(1);
 
         if(show_ui) {
-            Panel panel = ui::start_panel("", Vector2(10, 10.0f), 420.0f);
+            Panel panel = ui::start_panel("", Vector2(10, 10.0f));
             ui::add_slider(&panel, "UPDATE SPEED", &config.update_speed, 0.0, 1.0f);
             ui::add_slider(&panel, "COL UPDATE SPEED", &config.color_update_speed, 0.0, 1.0f);
             ui::add_slider(&panel, "ZOOM RATIO", &config.zoom_ratio, 0.5f, 1.5f);
