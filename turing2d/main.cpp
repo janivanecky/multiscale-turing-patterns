@@ -109,7 +109,6 @@ int main(int argc, char **argv) {
     graphics::init();
     graphics::init_swap_chain(window, window_width, window_height);
 
-    font::init();
     ui_draw::init((float)window_width, (float)window_height);
     ui::set_input_responsive(true);
 
