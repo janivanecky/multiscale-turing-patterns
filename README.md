@@ -1,5 +1,5 @@
 # Multiscale Turing Patterns
-![title.png](imgs/0.png)
+![title.png](imgs/title.png)
 
 Based on:
 - [Ricky Reusser's work](http://rreusser.github.io/multiscale-turing-pattern-gallery/)
